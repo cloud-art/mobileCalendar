@@ -7,7 +7,6 @@ width: 100%;
 background-color: white;
 overflow: scroll;
 `
-
 const Grid = styled.div`
 display: grid;
 position: relative;
@@ -31,9 +30,16 @@ padding: 1px;
 margin: -1px;
 `
 
+const DayWrapper = styled.div`
+height: 100%;
+width: 100%;
+background-color: white;
+`
+
 const Day = styled.div<{ haveEvent?: boolean, selected?: boolean }>`
 height: 100%;
 width: 100%;
 background-color: ${({ haveEvent, selected }) => haveEvent && 'rgb(235, 236, 255)' || selected && 'rgb(179, 183, 255)' || 'white'};
 `
-export { StyledCalendarGrid, Grid, Time, Day }
+
+export { StyledCalendarGrid, Grid, Time, Day, DayWrapper }

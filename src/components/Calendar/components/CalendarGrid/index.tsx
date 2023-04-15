@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Day, Grid, StyledCalendarGrid, Time } from './styles'
+import { Day, DayWrapper, Grid, StyledCalendarGrid, Time } from './styles'
 import Text from '../../../shared/Text'
 import moment from 'moment'
 import ButtonDefault from '../../../shared/ButtonDefault'
@@ -26,6 +26,10 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({
         }
     ]
 
+    const handleDayClick = () => {
+        console.log(moment(events[1].date, 'X').day())
+    }
+
     useEffect(() => {
     }, [])
 
@@ -43,17 +47,16 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({
                         }
                         {daysArray.map((dayElement, j) => {
                             return (
-                                <Day>
-                                    <ButtonDefault>
+                                <DayWrapper>
+                                    <ButtonDefault onClick={handleDayClick}>
                                         {
                                             events.filter(event => moment(event.date, 'X').hour() == hourElement.hour() &&
-                                                moment(event.date, 'X').day() == dayElement.day()).length > 0 &&
-                                            <div style={{ width: `100%`, height: `100%`, backgroundColor: `rgb(235, 236, 255)` }}>
-                                                1
-                                            </div>
+                                                moment(event.date, 'X').format('DD-MM-YY') == dayElement.format('DD-MM-YY')).length > 0 &&
+                                            <Day haveEvent={true}></Day> ||
+                                            <Day></Day>
                                         }
                                     </ButtonDefault>
-                                </Day>
+                                </DayWrapper>
                             )
                         })}
                     </Grid>
