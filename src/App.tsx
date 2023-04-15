@@ -1,5 +1,5 @@
 import React from 'react';
-import Calendar from './components/Calendar/Calendar';
+import Calendar from './components/Calendar';
 import styled from 'styled-components'
 
 const AppWrapper = styled.div`

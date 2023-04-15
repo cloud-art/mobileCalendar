@@ -12,6 +12,7 @@ box-sizing: border-box;
 width: 100%;
 height: 100%;
 border: 1px solid rgb(235, 235, 235);
+box-shadow: 10px 5px 5px #888;
 `
 
 function Calendar() {
