@@ -2,6 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Text from '../../../shared/Text'
 import Flex from '../../../shared/Flex'
+import ButtonDefault from '../../../shared/ButtonDefault';
+
+interface CalendarBottomProps {
+    todayWeekHandler: React.MouseEventHandler<HTMLButtonElement>;
+}
 
 const StyledCalendarBottom = styled.div`
 border-sizing: border-box
@@ -11,12 +16,18 @@ border-top: 1px solid rgb(235, 235, 235);
 background-color: rgb(246, 246, 246);
 `
 
-const CalendarBottom = () => {
+const CalendarBottom: React.FC<CalendarBottomProps> = ({
+    todayWeekHandler,
+}) => {
     return (
         <StyledCalendarBottom>
             <Flex justifyContent='space-between' alignItems='center'>
-                <Text fontSize='medium' color='red'>Today</Text>
-                <Text fontSize='medium' color='red'>Delete</Text>
+                <ButtonDefault onClick={todayWeekHandler}>
+                    <Text fontSize='big' color='red'>Today</Text>
+                </ButtonDefault>
+                <ButtonDefault onClick={todayWeekHandler}>
+                    <Text fontSize='big' color='red'>Delete</Text>
+                </ButtonDefault>
             </Flex>
         </StyledCalendarBottom>
     )

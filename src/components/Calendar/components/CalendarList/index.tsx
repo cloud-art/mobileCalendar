@@ -1,45 +1,61 @@
 import moment from 'moment'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import SvgContainer from '../../../shared/SvgContainer'
 import Text from '../../../shared/Text'
-import { ArrowLeft, ArrowRight, Day, StyledCalendarList, StyledWeek } from './styles'
+import { Day, StyledCalendarList } from './styles'
 import Flex from '../../../shared/Flex'
+import ButtonDefault from '../../../shared/ButtonDefault'
 
-const CalendarList = () => {
-    const weeksArray = [...Array(7)]
+interface CalendarListProps {
+    startDay: moment.Moment;
+    thisWeek: moment.Moment;
+    previousWeekHandler: React.MouseEventHandler<HTMLButtonElement>;
+    nextWeekHandler: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+const CalendarList: React.FC<CalendarListProps> = ({
+    startDay,
+    thisWeek,
+    previousWeekHandler,
+    nextWeekHandler,
+}) => {
+    const day = startDay.clone().subtract(1, 'day');
+    const weekArray = [...Array(7)].map(() => day.add(1, 'day').clone())
 
     return (
         <StyledCalendarList>
             <Flex justifyContent='flex-end'>
                 <Flex justifyContent='space-between' width='100%'>
-                    {weeksArray.map((day, i) => {
+                    {weekArray.map((day, i) => {
                         return (
                             <Flex flexDirection='column' justifyContent='center' alignItems='center'>
-                                <Text fontSize='0.7em' fontWeight='700'>{moment().day(i + 1).format('dd').substring(0, 1)}</Text>
+                                <Text fontSize='0.7em' fontWeight='700'>
+                                    {day.day(i + 1).format('dd').substring(0, 1)}
+                                </Text>
 
-                                {moment().endOf('day').format('DDMMYYYY') == moment().day(i + 1).format('DDMMYYYY') ?
-                                    <Day selected={true}>{moment().day(i + 1).format('DD')}</Day> :
-                                    <Day>{moment().day(i + 1).format('DD')}</Day>}
-
+                                {moment().endOf('day').format('DDMMYYYY') == day.format('DDMMYYYY') ?
+                                    <Day selected={true}>{day.format('DD')}</Day> :
+                                    <Day>{day.format('DD')}</Day>
+                                }
                             </Flex>
                         )
                     })}
                 </Flex>
             </Flex>
-            <StyledWeek>
-                <Text fontSize='medium'>{moment().format('MMMM YYYY')}</Text>
-                <ArrowLeft>
+            <Flex justifyContent='space-between'>
+                <ButtonDefault onClick={previousWeekHandler}>
                     <SvgContainer fontSize='big' color='red'>
                         <FiChevronLeft />
                     </SvgContainer>
-                </ArrowLeft>
-                <ArrowRight>
+                </ButtonDefault>
+                <Text fontSize='medium'>{thisWeek.format('MMMM YYYY')}</Text>
+                <ButtonDefault onClick={nextWeekHandler}>
                     <SvgContainer fontSize='big' color='red'>
                         <FiChevronRight />
                     </SvgContainer>
-                </ArrowRight>
-            </StyledWeek>
+                </ButtonDefault>
+            </Flex>
         </StyledCalendarList>
     )
 }

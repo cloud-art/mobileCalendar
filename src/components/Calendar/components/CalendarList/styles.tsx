@@ -23,21 +23,4 @@ ${props => props.selected ? `
 ` : ``}
 `
 
-const StyledWeek = styled.div`
-display: flex;
-position: relative;
-justify-content: center;
-align-items: center;
-`
-
-const ArrowLeft = styled.span`
-position: absolute;
-left: 0;
-`
-
-const ArrowRight = styled.span`
-position: absolute;
-right: 0;
-`
-
-export { StyledCalendarList, StyledWeek, Day, ArrowLeft, ArrowRight }
+export { StyledCalendarList, Day }

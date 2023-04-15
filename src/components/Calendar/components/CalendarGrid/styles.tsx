@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { readBuilderProgram } from "typescript";
 
 const StyledCalendarGrid = styled.div`
 height: 100%;
@@ -30,9 +31,9 @@ padding: 1px;
 margin: -1px;
 `
 
-const Day = styled.div`
+const Day = styled.div<{ haveEvent?: boolean, selected?: boolean }>`
 height: 100%;
 width: 100%;
-background-color: white;
+background-color: ${({ haveEvent, selected }) => haveEvent && 'rgb(235, 236, 255)' || selected && 'rgb(179, 183, 255)' || 'white'};
 `
 export { StyledCalendarGrid, Grid, Time, Day }
