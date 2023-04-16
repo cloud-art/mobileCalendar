@@ -11,10 +11,13 @@ const StyledCalendar = styled.div`
 display: flex;
 flex-direction: column;
 box-sizing: border-box; 
-width: 100%;
-height: 100%;
+width: 500px;
+height: 740px;
 border: 1px solid rgb(235, 235, 235);
 box-shadow: 10px 5px 5px #888;
+@media (max-height: 740px) {
+    height:100%;
+}
 `
 
 const Calendar: React.FC = ({ }) => {

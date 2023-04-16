@@ -52,6 +52,7 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
                     isOpen={modalIsOpen}
                     onRequestClose={handleCloseModal}
                     ariaHideApp={false}
+                    portalClassName="modal-portal"
                 >
                     <ModalForm
                         handleCloseModal={handleCloseModal}
