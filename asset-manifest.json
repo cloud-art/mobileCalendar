@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/cloud-art/mobileCalendar/static/css/main.1aab6ecb.css",
-    "main.js": "/cloud-art/mobileCalendar/static/js/main.dce1e5b1.js",
-    "index.html": "/cloud-art/mobileCalendar/index.html",
-    "main.1aab6ecb.css.map": "/cloud-art/mobileCalendar/static/css/main.1aab6ecb.css.map",
-    "main.dce1e5b1.js.map": "/cloud-art/mobileCalendar/static/js/main.dce1e5b1.js.map"
+    "main.css": "/mobileCalendar/static/css/main.1aab6ecb.css",
+    "main.js": "/mobileCalendar/static/js/main.de6c018b.js",
+    "index.html": "/mobileCalendar/index.html",
+    "main.1aab6ecb.css.map": "/mobileCalendar/static/css/main.1aab6ecb.css.map",
+    "main.de6c018b.js.map": "/mobileCalendar/static/js/main.de6c018b.js.map"
   },
   "entrypoints": [
     "static/css/main.1aab6ecb.css",
-    "static/js/main.dce1e5b1.js"
+    "static/js/main.de6c018b.js"
   ]
 }
