@@ -44,7 +44,7 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
     return (
         <StyledCalendarHeader>
             <Flex justifyContent={'space-between'} alignItems={'center'}>
-                <Text fontSize='big'>Interview Calendar</Text>
+                <Text fontSize='big'>React Calendar</Text>
                 <ButtonDefault onClick={handleOpenModal}>
                     <SvgContainer fontSize='2em' color='red'><FiPlus /></SvgContainer>
                 </ButtonDefault>
