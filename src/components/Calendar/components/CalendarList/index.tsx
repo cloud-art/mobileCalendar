@@ -29,9 +29,9 @@ const CalendarList: React.FC<CalendarListProps> = ({
                 <Flex justifyContent='space-between' width='100%'>
                     {weekArray.map((day, i) => {
                         return (
-                            <Flex flexDirection='column' justifyContent='center' alignItems='center'>
+                            <Flex key={parseInt(day.format('X'))} flexDirection='column' justifyContent='center' alignItems='center'>
                                 <Text fontSize='0.7em' fontWeight='700'>
-                                    {day.day(i + 1).format('dd').substring(0, 1)}
+                                    {day.format('dd').substring(0, 1)}
                                 </Text>
 
                                 {moment().endOf('day').format('DDMMYYYY') == day.format('DDMMYYYY') ?

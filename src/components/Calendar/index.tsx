@@ -21,7 +21,7 @@ const Calendar: React.FC = ({ }) => {
     const [thisWeek, setThisWeek] = useState<moment.Moment>(moment())
     const [selectedDay, setSelectedDay] = useState<IEvent | null>(null)
     const [isUpdating, setIsUpdating] = useState<boolean>(false)
-    const startDay = thisWeek.clone().startOf('week')
+    const startDay = thisWeek.clone().startOf('isoWeek')
     const [events, setEvents] = useState([
         {
             id: 1681563600,
@@ -49,12 +49,14 @@ const Calendar: React.FC = ({ }) => {
             const time = parseInt(moment(date, 'YYYY-MM-DD HH:mm:ss').format('X'))
             setEvents([...events, { id: time, date: time, desc: '' }])
         }
+        console.log("added")
     }
 
     useEffect(() => {
         events.find(e => e.date == selectedDay?.date) ? setIsUpdating(true) : setIsUpdating(false)
+        console.log(selectedDay)
+        console.log(events)
     }, [selectedDay])
-
 
     return (
         <StyledCalendar>

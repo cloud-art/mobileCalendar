@@ -5,7 +5,7 @@ import Flex from '../../../shared/Flex';
 import Text from '../../../shared/Text';
 
 interface ModalFormProps {
-    handleCloseModal: React.MouseEventHandler<HTMLButtonElement>,
+    handleCloseModal: () => void,
     handleAddEvent: (date: string) => void;
 }
 
@@ -57,17 +57,20 @@ const ModalForm: React.FC<ModalFormProps> = ({
     handleCloseModal,
     handleAddEvent,
 }) => {
-    const [value, setValue] = useState<string>('')
+    const [value, setValue] = useState<string>('2023-04-16 02:00:00')
     const [isValid, setIsValid] = useState<boolean>(false)
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (isValid) {
             handleAddEvent(value)
+            handleCloseModal()
         } else {
             alert("wrong format")
         }
     }
+
+    // const handle
 
     useEffect(() => {
         const regex = new RegExp(/\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d/i)
@@ -76,7 +79,6 @@ const ModalForm: React.FC<ModalFormProps> = ({
         } else {
             setIsValid(false)
         }
-        console.log(regex.test(value))
     }, [value])
 
 
@@ -98,14 +100,14 @@ const ModalForm: React.FC<ModalFormProps> = ({
                 <ModalBottom>
                     <Flex>
                         <ButtonWrapper>
-                            <ButtonDefault onClick={handleCloseModal}>
+                            <ButtonDefault type="button" onClick={handleCloseModal}>
                                 <TextWrapper>
                                     <Text fontSize='big' color='blue'>Cancel</Text>
                                 </TextWrapper>
                             </ButtonDefault>
                         </ButtonWrapper>
                         <ButtonWrapper>
-                            <ButtonDefault type="submit" onClick={(e) => { if (isValid) { handleCloseModal(e) } }}>
+                            <ButtonDefault type="submit">
                                 <TextWrapper>
                                     <Text fontSize='big' color='blue'>OK</Text>
                                 </TextWrapper>
