@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/mobileCalendar/static/css/main.1aab6ecb.css",
-    "main.js": "/mobileCalendar/static/js/main.de6c018b.js",
+    "main.js": "/mobileCalendar/static/js/main.7d70ef9b.js",
     "index.html": "/mobileCalendar/index.html",
     "main.1aab6ecb.css.map": "/mobileCalendar/static/css/main.1aab6ecb.css.map",
-    "main.de6c018b.js.map": "/mobileCalendar/static/js/main.de6c018b.js.map"
+    "main.7d70ef9b.js.map": "/mobileCalendar/static/js/main.7d70ef9b.js.map"
   },
   "entrypoints": [
     "static/css/main.1aab6ecb.css",
-    "static/js/main.de6c018b.js"
+    "static/js/main.7d70ef9b.js"
   ]
 }
