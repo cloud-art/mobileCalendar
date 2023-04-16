@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import CalendarHeader from './components/CalendarHeader'
 import CalendarBottom from './components/CalendarBottom'
 import CalendarList from './components/CalendarList'
 import CalendarGrid from './components/CalendarGrid'
 import moment from 'moment'
+import { IEvent } from '../../types/IEvent'
 
 const StyledCalendar = styled.div`
 display: flex;
@@ -16,22 +17,50 @@ border: 1px solid rgb(235, 235, 235);
 box-shadow: 10px 5px 5px #888;
 `
 
-function Calendar() {
+const Calendar: React.FC = ({ }) => {
     const [thisWeek, setThisWeek] = useState<moment.Moment>(moment())
+    const [selectedDay, setSelectedDay] = useState<IEvent | null>(null)
+    const [isUpdating, setIsUpdating] = useState<boolean>(false)
     const startDay = thisWeek.clone().startOf('week')
+    const [events, setEvents] = useState([
+        {
+            id: 1681563600,
+            desc: 'do smth',
+            date: 1681563600,
+        },
+        {
+            id: 1681506000,
+            desc: 'do smth',
+            date: 1681506000
+        }
+    ])
 
     const previousWeekHandler = () => { setThisWeek((thisWeek) => thisWeek.clone().subtract(1, 'week')) }
     const todayWeekHandler = () => { setThisWeek(moment()) }
     const nextWeekHandler = () => { setThisWeek(thisWeek => thisWeek.clone().add(1, 'week')) }
 
+    const handleDeleteEvent = () => {
+        selectedDay && setEvents(events.filter(obj => obj.date !== selectedDay.date))
+        setSelectedDay(null)
+    }
+
+    const handleAddEvent = (date: string) => {
+        if (moment(date, 'YYYY-MM-DD HH:mm:ss').isValid()) {
+            const time = parseInt(moment(date, 'YYYY-MM-DD HH:mm:ss').format('X'))
+            setEvents([...events, { id: time, date: time, desc: '' }])
+        }
+    }
+
     useEffect(() => {
-        console.log("re-render")
-    }, [startDay])
+        events.find(e => e.date == selectedDay?.date) ? setIsUpdating(true) : setIsUpdating(false)
+    }, [selectedDay])
 
 
     return (
         <StyledCalendar>
-            <CalendarHeader></CalendarHeader>
+            <CalendarHeader
+                handleAddEvent={handleAddEvent}
+            />
             <CalendarList
                 startDay={startDay}
                 thisWeek={thisWeek}
@@ -39,10 +68,15 @@ function Calendar() {
                 nextWeekHandler={nextWeekHandler}
             />
             <CalendarGrid
+                selectedDay={selectedDay}
+                setSelectedDay={setSelectedDay}
+                events={events}
                 startDay={startDay}
             />
             <CalendarBottom
                 todayWeekHandler={todayWeekHandler}
+                isUpdating={isUpdating}
+                handleDeleteEvent={handleDeleteEvent}
             />
         </StyledCalendar>
 

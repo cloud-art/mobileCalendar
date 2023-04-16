@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components'
+import { readBuilderProgram } from 'typescript';
 
 type StyledTextProps = {
     fontSize?: 'big' | 'medium' | 'small' | string;
@@ -18,7 +19,8 @@ color: ${({ color }) =>
         color == 'red' ? 'rgb(255, 49, 49)'
             : color == 'grey' ? 'rgba(192, 192, 192)'
                 : color == 'black' ? 'rgb(3, 3, 3)'
-                    : color || 'rgba(77, 77, 77)'
+                    : color == 'blue' ? 'rgb(0, 119, 255)'
+                        : color || 'rgba(77, 77, 77)'
     };
 font-weight: ${({ fontWeight }) => fontWeight || '500'};
 `

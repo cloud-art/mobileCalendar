@@ -7,6 +7,7 @@ type StyledFlexProps = {
     justifyContent?: string;
     margin?: string;
     width?: string;
+    height?: string;
 }
 
 const StyledFlex = styled.div<StyledFlexProps>`
@@ -16,6 +17,7 @@ align-items: ${({ alignItems }) => alignItems || 'stretch'};
 justify-content: ${({ justifyContent }) => justifyContent || 'stretch'};
 margin: ${({ margin }) => margin || '0'};
 width: ${({ width }) => width || 'auto'};
+height: ${({ height }) => height || 'auto'};
 `
 
 const Flex: React.FC<PropsWithChildren<StyledFlexProps>> = ({
@@ -25,6 +27,7 @@ const Flex: React.FC<PropsWithChildren<StyledFlexProps>> = ({
     justifyContent,
     margin,
     width,
+    height,
 }) => {
     return (
         <StyledFlex
@@ -33,6 +36,7 @@ const Flex: React.FC<PropsWithChildren<StyledFlexProps>> = ({
             justifyContent={justifyContent}
             margin={margin}
             width={width}
+            height={height}
         >
             {children}
         </StyledFlex>
