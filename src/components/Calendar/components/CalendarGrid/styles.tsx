@@ -32,7 +32,7 @@ background-color: rgb(230, 230, 230);
 
 const Time = styled.div`
 position: absolute;
-bottom: -10px;
+top: -10px;
 left: -3.5em;
 padding: 1px;
 margin: -1px;

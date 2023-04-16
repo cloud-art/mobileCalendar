@@ -20,17 +20,17 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({
     setSelectedDay,
     selectedDay,
 }) => {
-    const timeDay = startDay.clone().subtract(1, 'day')
-    const timeArray = [...Array(24)].map(() => timeDay.add(1, 'hour').clone())
     const daysDay = startDay.clone().subtract(1, 'day')
+    const timeDay = daysDay.clone().subtract(1, 'hour')
     const daysArray = [...Array(7)].map(() => daysDay.add(1, 'day').clone())
+    const timeArray = [...Array(24)].map(() => timeDay.add(1, 'hour').clone())
 
     return (
         <StyledCalendarGrid>
             {timeArray.map((hourElement, i) => {
                 return (
                     <Grid key={parseInt(hourElement.format('YYYYMMDDHHmm'))}>
-                        {i + 1 != timeArray.length &&
+                        {i != 0 &&
                             <Time>
                                 <Text color='grey'>
                                     {hourElement.format('HH:mm')}
