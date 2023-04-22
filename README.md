@@ -1,6 +1,6 @@
 # React Project - Mobile calendar
 
-Stack: **React**, **styled-components**, **Typescript**
+Stack: **React**, **styled-components**, **Typescript**, **Redux**
 
 `Main screen`
 
