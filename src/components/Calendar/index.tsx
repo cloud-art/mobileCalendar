@@ -27,7 +27,7 @@ const Calendar: React.FC = ({ }) => {
     const startDay = thisWeek.clone().startOf('isoWeek')
 
     const selectedDay: ISelectedDay = useTypedSelector((state) => state.selectedDay)
-    const { setSelectedDay, addEvent, removeEvent } = useActions()
+    const { setSelectedDay, addEvent, removeEvent, setUpdating } = useActions()
 
     const previousWeekHandler = () => { setThisWeek((thisWeek) => thisWeek.clone().subtract(1, 'week')) }
     const todayWeekHandler = () => { setThisWeek(moment()) }
@@ -36,8 +36,7 @@ const Calendar: React.FC = ({ }) => {
     const handleDeleteEvent = () => {
         if (selectedDay.date) {
             removeEvent(selectedDay.date)
-            console.log(selectedDay)
-            // setSelectedDay({ date: null })
+            setSelectedDay(null)
         }
     }
 

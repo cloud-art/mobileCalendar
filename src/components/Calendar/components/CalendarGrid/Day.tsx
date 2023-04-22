@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useTypedSelector } from '../../../../hooks/useTypedSelector'
 import { ISelectedDay } from '../../../../types/ISelectedDay'
@@ -22,7 +22,7 @@ cursor: pointer;
 background-color: ${({ haveEvent, selected }) => selected && 'rgb(179, 183, 255)' || haveEvent && 'rgb(235, 236, 255)' || 'white'};
 `
 
-const Day: React.FC<DayProps> = ({ date, events }) => {
+const Day: React.FC<DayProps> = memo(({ date, events }) => {
     const selectedDay: ISelectedDay = useTypedSelector(state => state.selectedDay)
     const { setUpdating, setSelectedDay } = useActions()
     const [selected, setSelected] = useState<boolean>(false)
@@ -32,11 +32,15 @@ const Day: React.FC<DayProps> = ({ date, events }) => {
         setHaveEvent(events?.length ? true : false)
     }, [events])
 
-    // const onClickHandler = () => {
-    //     if (selectedDay.date == date) {
-    //         setSelected(true)
-    //     }
-    // }
+    const onClickHandler = () => {
+        setSelectedDay(date)
+        isHaveEvent ? setUpdating(true) : setUpdating(false)
+    }
+
+    useEffect(() => {
+        selectedDay.date == date ? setSelected(true) : setSelected(false)
+
+    }, [selectedDay])
 
     const onFocusHandler = () => {
         setSelected(true)
@@ -52,12 +56,10 @@ const Day: React.FC<DayProps> = ({ date, events }) => {
 
     return (
         <StyledDay haveEvent={isHaveEvent} selected={selected} tabIndex={-1}
-            // onClick={onClickHandler}
-            onFocus={onFocusHandler}
-            onBlur={onBlurHandler}
+            onClick={onClickHandler}
         >
         </StyledDay>
     )
-}
+})
 
 export default Day

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, memo } from 'react'
 import Text from '../../../shared/Text'
 import moment from 'moment'
 import styled from 'styled-components'
@@ -18,7 +18,7 @@ padding: 1px;
 margin: -1px;
 `
 
-const CalendarRow: React.FC<PropsWithChildren<CalendarRowProps>> = ({
+const CalendarRow: React.FC<PropsWithChildren<CalendarRowProps>> = memo(({
     hourTime,
     placeholder = true,
     children
@@ -36,6 +36,6 @@ const CalendarRow: React.FC<PropsWithChildren<CalendarRowProps>> = ({
             {children}
         </GridRow >
     )
-}
+})
 
 export default CalendarRow

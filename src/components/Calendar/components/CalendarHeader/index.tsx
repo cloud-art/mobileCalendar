@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { FiPlus } from 'react-icons/fi'
 import styled from 'styled-components'
 import Text from '../../../shared/Text'
@@ -30,7 +30,7 @@ align-items: center;
 justify-content: center;
 `
 
-const CalendarHeader: React.FC<CalendarHeaderProps> = ({
+const CalendarHeader: React.FC<CalendarHeaderProps> = memo(({
     handleAddEvent,
 }) => {
     const [modalIsOpen, setIsOpen] = useState(false)
@@ -62,6 +62,6 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
             </Flex>
         </StyledCalendarHeader>
     )
-}
+})
 
 export default CalendarHeader

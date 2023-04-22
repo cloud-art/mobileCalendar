@@ -48,10 +48,6 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({
                             return (
                                 <DayWrapper key={parseInt(dayElement.format('X'))}>
                                     <Day
-                                        // haveEvent={
-                                        //     events.filter(event => moment(event.date, 'X').hour() == hourElement.hour() &&
-                                        //         moment(event.date, 'X').format('DD-MM-YY') == dayElement.format('DD-MM-YY')).length > 0
-                                        // }
                                         events={events.filter(event => moment(event.date, 'X').hour() == hourElement.hour() &&
                                             moment(event.date, 'X').format('DD-MM-YY') == dayElement.format('DD-MM-YY'))}
                                         date={parseInt(moment(dayElement.format("DD-MM-YYYY") + ' ' + hourElement.format('HH:mm'), 'DD-MM-YYYY HH:mm').format('X'))}

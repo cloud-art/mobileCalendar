@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, { FormEvent, memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ButtonDefault from '../../../shared/ButtonDefault'
 import Flex from '../../../shared/Flex';
@@ -53,7 +53,7 @@ line-height: 10px;
 `
 
 
-const ModalForm: React.FC<ModalFormProps> = ({
+const ModalForm: React.FC<ModalFormProps> = memo(({
     handleCloseModal,
     handleAddEvent,
 }) => {
@@ -118,6 +118,6 @@ const ModalForm: React.FC<ModalFormProps> = ({
             </Flex >
         </StyledModalForm >
     )
-}
+})
 
 export default ModalForm

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 import Text from '../../../shared/Text'
 import Flex from '../../../shared/Flex'
@@ -19,7 +19,7 @@ border-top: 1px solid rgb(235, 235, 235);
 background-color: rgb(246, 246, 246);
 `
 
-const CalendarBottom: React.FC<CalendarBottomProps> = ({
+const CalendarBottom: React.FC<CalendarBottomProps> = memo(({
     todayWeekHandler,
     handleDeleteEvent,
 }) => {
@@ -31,7 +31,7 @@ const CalendarBottom: React.FC<CalendarBottomProps> = ({
                     <Text fontSize='big' color='red'>Today</Text>
                 </ButtonDefault>
                 {
-                    // selectedDay.isUpdating &&
+                    selectedDay.isUpdating &&
                     <ButtonDefault onClick={handleDeleteEvent}>
                         <Text fontSize='big' color='red'>Delete</Text>
                     </ButtonDefault>
@@ -39,6 +39,6 @@ const CalendarBottom: React.FC<CalendarBottomProps> = ({
             </Flex>
         </StyledCalendarBottom>
     )
-}
+})
 
 export default CalendarBottom
