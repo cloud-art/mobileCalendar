@@ -4,15 +4,15 @@ Stack: **React**, **styled-components**, **Typescript**, **Redux**
 
 `Main screen`
 
-![Screenshot](public/img/1.png)
+![Screenshot](public/img/main.png)
 
 `Delete event`
 
-![Screenshot](public/img/2.png)
+![Screenshot](public/img/delete.png)
 
 `Add event`
 
-![Screenshot](public/img/3.png)
+![Screenshot](public/img/add.png)
 
 Demo
 -
