@@ -10,17 +10,10 @@ justify-content: center;
 align-items: center;
 `
 
-// const StyledCalendarContainer = styled.div`
-//     width: 500px;
-//     height: 740px;
-// `
-
 function App() {
     return (
         <AppWrapper>
-            {/* <StyledCalendarContainer> */}
             <Calendar></Calendar>
-            {/* </StyledCalendarContainer> */}
         </AppWrapper>
 
     );
