@@ -37,6 +37,7 @@ const Calendar: React.FC = ({ }) => {
         if (selectedDay.date) {
             removeEvent(selectedDay.date)
             setSelectedDay(null)
+            setUpdating(false)
         }
     }
 
