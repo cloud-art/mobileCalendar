@@ -7,22 +7,23 @@ import { Day, StyledCalendarList } from './styles'
 import Flex from '../../../shared/Flex'
 import ButtonDefault from '../../../shared/ButtonDefault'
 import GridRow from '../../../shared/GridRow'
+import { useActions } from '../../../../hooks/useAction'
+import { useTypedSelector } from '../../../../hooks/useTypedSelector'
 
 interface CalendarListProps {
-    startDay: moment.Moment;
-    thisWeek: moment.Moment;
-    previousWeekHandler: React.MouseEventHandler<HTMLButtonElement>;
-    nextWeekHandler: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const CalendarList: React.FC<CalendarListProps> = ({
-    startDay,
-    thisWeek,
-    previousWeekHandler,
-    nextWeekHandler,
 }) => {
+    const thisWeek = useTypedSelector(state => state.calendar.thisWeek)
+    const startDay = useTypedSelector(state => state.calendar.startDay)
+    const { setThisWeek } = useActions()
+
     const day = startDay.clone().subtract(1, 'day');
     const weekArray = [...Array(7)].map(() => day.add(1, 'day').clone())
+
+    const previousWeekHandler = () => { setThisWeek(thisWeek.clone().subtract(1, 'week')) }
+    const nextWeekHandler = () => { setThisWeek(thisWeek.clone().add(1, 'week')) }
 
     return (
         <StyledCalendarList>

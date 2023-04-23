@@ -39,20 +39,7 @@ const Day: React.FC<DayProps> = memo(({ date, events }) => {
 
     useEffect(() => {
         selectedDay.date == date ? setSelected(true) : setSelected(false)
-
     }, [selectedDay])
-
-    const onFocusHandler = () => {
-        setSelected(true)
-        setSelectedDay(date);
-        if (isHaveEvent) setUpdating(true); else setUpdating(false);
-    }
-
-    const onBlurHandler = () => {
-        setSelected(false)
-        setSelectedDay(null);
-        setUpdating(false)
-    }
 
     return (
         <StyledDay haveEvent={isHaveEvent} selected={selected} tabIndex={-1}

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Day from './Day'
 import moment from 'moment'
 import CalendarRow from './CalendarRow'
 import styled from 'styled-components'
 import { useTypedSelector } from '../../../../hooks/useTypedSelector'
 import { IEvent } from '../../../../types/IEvent'
-import { useActions } from '../../../../hooks/useAction'
+import { ISelectedDay } from '../../../../types/ISelectedDay'
 
 interface CalendarGridProps {
-    startDay: moment.Moment;
 }
 
 const StyledCalendarGrid = styled.div`
@@ -30,8 +29,9 @@ background-color: white;
 `
 
 const CalendarGrid: React.FC<CalendarGridProps> = ({
-    startDay,
 }) => {
+    const startDay = useTypedSelector(state => state.calendar.startDay)
+
     const daysDay = startDay.clone().subtract(1, 'day')
     const timeDay = daysDay.clone().subtract(1, 'hour')
     const daysArray = [...Array(7)].map(() => daysDay.add(1, 'day').clone())

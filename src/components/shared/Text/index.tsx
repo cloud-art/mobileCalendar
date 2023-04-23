@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components'
-import { readBuilderProgram } from 'typescript';
 
 type StyledTextProps = {
     fontSize?: 'big' | 'medium' | 'small' | string;

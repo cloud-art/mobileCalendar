@@ -5,10 +5,10 @@ import Flex from '../../../shared/Flex'
 import ButtonDefault from '../../../shared/ButtonDefault';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import { ISelectedDay } from '../../../../types/ISelectedDay';
+import { useActions } from '../../../../hooks/useAction';
+import moment from 'moment';
 
 interface CalendarBottomProps {
-    todayWeekHandler: React.MouseEventHandler<HTMLButtonElement>;
-    handleDeleteEvent: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const StyledCalendarBottom = styled.div`
@@ -19,11 +19,17 @@ border-top: 1px solid rgb(235, 235, 235);
 background-color: rgb(246, 246, 246);
 `
 
-const CalendarBottom: React.FC<CalendarBottomProps> = memo(({
-    todayWeekHandler,
-    handleDeleteEvent,
-}) => {
+const CalendarBottom: React.FC<CalendarBottomProps> = memo(({ }) => {
     const selectedDay: ISelectedDay = useTypedSelector(state => state.selectedDay)
+    const { removeEvent, setSelectedDay, setUpdating, setThisWeek } = useActions()
+    const handleDeleteEvent = () => {
+        if (selectedDay.date) {
+            removeEvent(selectedDay.date)
+            setSelectedDay(null)
+            setUpdating(false)
+        }
+    }
+    const todayWeekHandler = () => { setThisWeek(moment()) }
     return (
         <StyledCalendarBottom>
             <Flex justifyContent='space-between' alignItems='center'>

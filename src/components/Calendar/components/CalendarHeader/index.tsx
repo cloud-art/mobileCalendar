@@ -7,9 +7,8 @@ import SvgContainer from '../../../shared/SvgContainer'
 import ButtonDefault from '../../../shared/ButtonDefault'
 import Modal from 'react-modal'
 import ModalForm from './ModalForm'
-interface CalendarHeaderProps {
-    handleAddEvent: (date: string) => void;
-}
+import { useActions } from '../../../../hooks/useAction'
+import moment from 'moment'
 
 const StyledCalendarHeader = styled.div`
 position: relative;
@@ -30,15 +29,23 @@ align-items: center;
 justify-content: center;
 `
 
-const CalendarHeader: React.FC<CalendarHeaderProps> = memo(({
-    handleAddEvent,
+const CalendarHeader = memo(({
 }) => {
+    const { addEvent } = useActions()
+
     const [modalIsOpen, setIsOpen] = useState(false)
     const handleOpenModal = () => {
         setIsOpen(true)
     }
     const handleCloseModal = () => {
         setIsOpen(false)
+    }
+
+    const handleAddEvent = (date: string) => {
+        if (moment(date, 'YYYY-MM-DD HH:mm:ss').isValid()) {
+            const time = parseInt(moment(date, 'YYYY-MM-DD HH:mm:ss').format('X'))
+            addEvent({ id: time, date: time, desc: 'added' })
+        }
     }
 
     return (
